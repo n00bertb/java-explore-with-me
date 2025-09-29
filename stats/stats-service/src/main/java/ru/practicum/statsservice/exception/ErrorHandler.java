@@ -16,37 +16,37 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler
     protected ResponseEntity<Object> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
-        log.info("400 {}", ex.getMessage());
+        log.error("400 {}", ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
     private ResponseEntity<Object> handleThrowableException(Throwable ex) {
-        log.info("500 {}", ex.getMessage());
+        log.error("500 {}", ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler
     private ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException ex) {
-        log.info("400 {}", ex.getMessage());
+        log.error("400 {}", ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
     private ResponseEntity<Object> handleConversionFailedException(ConversionFailedException ex) {
-        log.info("400 {}", ex.getMessage());
+        log.error("400 {}", ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
     private ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex) {
-        log.info("400 {}", ex.getMessage());
+        log.error("400 {}", ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
     private ResponseEntity<Object> handleInvalidPeriodException(InvalidPeriodException ex) {
-        log.info("400 {}", ex.getMessage());
+        log.error("400 {}", ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
