@@ -1,4 +1,4 @@
-package ru.practicum.stats_common.model;
+package ru.practicum.statscommon.model;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;

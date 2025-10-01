@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.practicum.stats_common.StatsCommonUtils;
-import ru.practicum.stats_common.model.EndpointHit;
-import ru.practicum.stats_common.model.ViewStats;
+import ru.practicum.statscommon.StatsCommonUtils;
+import ru.practicum.statscommon.model.EndpointHit;
+import ru.practicum.statscommon.model.ViewStats;
 import ru.practicum.statsserver.mapper.StatsMapper;
 import ru.practicum.statsserver.storage.StatsRepository;
 

@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.mainservice.MainCommonUtils;
 import ru.practicum.mainservice.event.model.Event;
 import ru.practicum.mainservice.event.repository.RequestRepository;
-import ru.practicum.stats_client.StatsClient;
-import ru.practicum.stats_common.model.ViewStats;
+import ru.practicum.statsclient.StatsClient;
+import ru.practicum.statscommon.model.ViewStats;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

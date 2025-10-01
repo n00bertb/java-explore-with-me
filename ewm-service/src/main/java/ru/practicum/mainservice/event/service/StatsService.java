@@ -2,7 +2,7 @@ package ru.practicum.mainservice.event.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import ru.practicum.mainservice.event.model.Event;
-import ru.practicum.stats_common.model.ViewStats;
+import ru.practicum.statscommon.model.ViewStats;
 
 import java.time.LocalDateTime;
 import java.util.List;

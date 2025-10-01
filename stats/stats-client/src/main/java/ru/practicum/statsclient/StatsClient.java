@@ -1,4 +1,4 @@
-package ru.practicum.stats_client;
+package ru.practicum.statsclient;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.DefaultUriBuilderFactory;
-import ru.practicum.stats_common.StatsCommonUtils;
-import ru.practicum.stats_common.model.EndpointHit;
+import ru.practicum.statscommon.StatsCommonUtils;
+import ru.practicum.statscommon.model.EndpointHit;
 
 import java.time.LocalDateTime;
 import java.util.List;
