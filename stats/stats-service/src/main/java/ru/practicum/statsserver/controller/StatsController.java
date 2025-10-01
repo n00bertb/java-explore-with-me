@@ -1,4 +1,4 @@
-package ru.practicum.stats_server.controller;
+package ru.practicum.statsserver.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.stats_common.StatsCommonUtils;
 import ru.practicum.stats_common.model.EndpointHit;
 import ru.practicum.stats_common.model.ViewStats;
-import ru.practicum.stats_server.service.StatsService;
+import ru.practicum.statsserver.service.StatsService;
 
 import java.time.LocalDateTime;
 import java.util.List;

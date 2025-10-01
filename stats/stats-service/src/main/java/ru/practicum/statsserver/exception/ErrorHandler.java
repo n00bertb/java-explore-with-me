@@ -1,4 +1,4 @@
-package ru.practicum.stats_server.exception;
+package ru.practicum.statsserver.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,7 +37,6 @@ public class ErrorHandler {
         log.error(exception.toString());
         return new ErrorResponse(exception.getMessage());
     }
-
 
 
     @ExceptionHandler

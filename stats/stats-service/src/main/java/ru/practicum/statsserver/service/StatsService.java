@@ -1,4 +1,4 @@
-package ru.practicum.stats_server.service;
+package ru.practicum.statsserver.service;
 
 import ru.practicum.stats_common.model.EndpointHit;
 import ru.practicum.stats_common.model.ViewStats;

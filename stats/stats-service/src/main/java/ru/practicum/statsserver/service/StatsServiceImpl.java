@@ -1,4 +1,4 @@
-package ru.practicum.stats_server.service;
+package ru.practicum.statsserver.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.stats_common.StatsCommonUtils;
 import ru.practicum.stats_common.model.EndpointHit;
 import ru.practicum.stats_common.model.ViewStats;
-import ru.practicum.stats_server.mapper.StatsMapper;
-import ru.practicum.stats_server.storage.StatsRepository;
+import ru.practicum.statsserver.mapper.StatsMapper;
+import ru.practicum.statsserver.storage.StatsRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
