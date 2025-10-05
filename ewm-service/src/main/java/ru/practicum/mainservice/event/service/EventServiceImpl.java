@@ -28,6 +28,7 @@ import ru.practicum.mainservice.exception.ForbiddenException;
 import ru.practicum.mainservice.exception.NotFoundException;
 import ru.practicum.mainservice.user.model.User;
 import ru.practicum.mainservice.user.service.UserService;
+import ru.practicum.mainservice.comment.repository.CommentRepository;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -45,6 +46,7 @@ public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final EventMapper eventMapper;
     private final LocationMapper locationMapper;
+    private final CommentRepository commentRepository;
 
     @Override
     public List<EventFullDto> getEventsByAdmin(List<Long> users, List<EventState> states, List<Long> categories,
@@ -69,7 +71,7 @@ public class EventServiceImpl implements EventService {
 
         checkNewEventDate(updateEventAdminRequest.getEventDate(), LocalDateTime.now().plusHours(1));
 
-        Event event = getEventById(eventId);
+        Event event = getPublicEventById(eventId);
 
         if (updateEventAdminRequest.getAnnotation() != null && !updateEventAdminRequest.getAnnotation().isBlank()) {
             event.setAnnotation(updateEventAdminRequest.getAnnotation());
@@ -285,7 +287,7 @@ public class EventServiceImpl implements EventService {
     public EventFullDto getEventByPublic(Long eventId, HttpServletRequest request) {
         log.info("Вывод события с ID {} в публичный запрос", eventId);
 
-        Event event = getEventById(eventId);
+        Event event = getPublicEventById(eventId);
 
         if (!event.getState().equals(EventState.PUBLISHED)) {
             throw new NotFoundException("Событие с этим ID не было опубликовано");
@@ -304,7 +306,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event getEventById(Long eventId) {
+    public Event getPublicEventById(Long eventId) {
         log.info("Вывод события с ID {}", eventId);
 
         return eventRepository.findById(eventId)
@@ -328,11 +330,25 @@ public class EventServiceImpl implements EventService {
 
         Map<Long, Long> confirmedRequests = statsService.getConfirmedRequests(events);
 
+        List<Long> eventsId = events.stream()
+                .map(Event::getId)
+                .toList();
+
+        Map<Long, Long> comments = new HashMap<>();
+        List<Object[]> commentsData = commentRepository.findCommentsCountByEventIds(eventsId);
+
+        for (Object[] row : commentsData) {
+            Long eventId = (Long) row[0];
+            Long count = ((Number) row[1]).longValue();
+            comments.put(eventId, count);
+        }
+
         return events.stream()
                 .map((event) -> eventMapper.toEventShortDto(
                         event,
                         confirmedRequests.getOrDefault(event.getId(), 0L),
-                        event.getViews()))
+                        event.getViews(),
+                        comments.getOrDefault(event.getId(), 0L)))
                 .sorted(Comparator.comparing(EventShortDto::getId))
                 .collect(Collectors.toList());
     }
