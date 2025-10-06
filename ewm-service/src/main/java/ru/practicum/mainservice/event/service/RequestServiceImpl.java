@@ -49,7 +49,7 @@ public class RequestServiceImpl implements RequestService {
         log.info("Создание запроса на участие в мероприятии с ID {} пользователем с ID {}", eventId, userId);
 
         User user = userService.getUserById(userId);
-        Event event = eventService.getEventById(eventId);
+        Event event = eventService.getPublicEventById(eventId);
 
         if (Objects.equals(event.getInitiator().getId(), userId)) {
             throw new ForbiddenException("Вы не можете создать запрос на собственное мероприятие");
@@ -108,7 +108,7 @@ public class RequestServiceImpl implements RequestService {
                 "владельца с ID {}", eventId, userId);
 
         userService.getUserById(userId);
-        Event event = eventService.getEventById(eventId);
+        Event event = eventService.getPublicEventById(eventId);
 
         checkUserIsOwner(event.getInitiator().getId(), userId);
 
@@ -123,7 +123,7 @@ public class RequestServiceImpl implements RequestService {
                 eventId, userId, eventRequestStatusUpdateRequest);
 
         userService.getUserById(userId);
-        Event event = eventService.getEventById(eventId);
+        Event event = eventService.getPublicEventById(eventId);
 
         checkUserIsOwner(event.getInitiator().getId(), userId);
 

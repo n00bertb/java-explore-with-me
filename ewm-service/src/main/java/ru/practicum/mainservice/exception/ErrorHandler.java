@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import ru.practicum.mainservice.MainCommonUtils;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -62,6 +63,17 @@ public class ErrorHandler {
         log.error(exception.toString());
         return new ApiError(HttpStatus.NOT_FOUND.name(),
                 "The required object was not found.",
+                exception.getMessage(),
+                getErrors(exception),
+                LocalDateTime.now().format(MainCommonUtils.DT_FORMATTER));
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiError handleEmptyResultDataAccessException(final EmptyResultDataAccessException exception) {
+        log.error(exception.toString());
+        return new ApiError(HttpStatus.NOT_FOUND.name(),
+                "The Object id Empty.",
                 exception.getMessage(),
                 getErrors(exception),
                 LocalDateTime.now().format(MainCommonUtils.DT_FORMATTER));
